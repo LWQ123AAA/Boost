@@ -1,0 +1,28 @@
+--cpu Cortex-M0+
+".\objects\startup_py32f030xx.o"
+".\objects\system_py32f0xx.o"
+".\objects\main.o"
+".\objects\initial.o"
+".\objects\py32f0xx_hal_msp.o"
+".\objects\gpio.o"
+".\objects\py32f0xx_it.o"
+".\objects\key.o"
+".\objects\py32f0xx_hal.o"
+".\objects\py32f0xx_hal_adc.o"
+".\objects\py32f0xx_hal_adc_ex.o"
+".\objects\py32f0xx_hal_cortex.o"
+".\objects\py32f0xx_hal_exti.o"
+".\objects\py32f0xx_hal_flash.o"
+".\objects\py32f0xx_hal_gpio.o"
+".\objects\py32f0xx_hal_led.o"
+".\objects\py32f0xx_hal_pwr.o"
+".\objects\py32f0xx_hal_rcc.o"
+".\objects\py32f0xx_hal_rcc_ex.o"
+".\objects\py32f0xx_hal_tim.o"
+".\objects\py32f0xx_hal_tim_ex.o"
+".\objects\py32f0xx_hal_dma.o"
+".\objects\py32f0xx_hal_crc.o"
+--library_type=microlib --strict --scatter ".\Objects\Project.sct"
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Listings\Project.map" -o .\Objects\Project.axf
