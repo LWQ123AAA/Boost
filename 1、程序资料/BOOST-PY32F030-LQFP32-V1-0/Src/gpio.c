@@ -32,9 +32,9 @@ void GPIO_INITIAL( GPIO_TypeDef *GPIOx,uint32_t GPIO_Pin,Mode_TypeDef MODE)
          break;
     case MODE_INPUT_NOUPDOWN:gpioinitstruct.Mode = GPIO_MODE_INPUT;
          break;
-    case MODE_OUTPUT_T1CH2:gpioinitstruct.Mode = GPIO_MODE_AF_PP;
+    case MODE_OUTPUT_T3CH1:gpioinitstruct.Mode = GPIO_MODE_AF_PP;
          gpioinitstruct.Pull = GPIO_PULLDOWN;
-         gpioinitstruct.Alternate = GPIO_AF1_TIM1;
+         gpioinitstruct.Alternate = GPIO_AF13_TIM3;
          break;
     default: break;
   }

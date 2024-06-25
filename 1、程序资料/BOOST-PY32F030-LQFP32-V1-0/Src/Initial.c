@@ -48,6 +48,57 @@ void Systick_Initial(void)
 }
 
 
+TIM_HandleTypeDef    TIM3Handle;
+TIM_OC_InitTypeDef  TIM3Config;
 
+void Timer3_Initial(void)
+{
+  __HAL_RCC_TIM3_CLK_ENABLE();
+  
+  TIM3Handle.Instance = TIM3;                                                  /* 选择TIM3 */
+  TIM3Handle.Init.Period            = 100;                                      /* 自动重装载值 pd  Ft = 24M/200 = 120Khz*/
+  TIM3Handle.Init.Prescaler         = 1 - 1;                                 /* 预分频1*/
+  TIM3Handle.Init.ClockDivision     = TIM_CLOCKDIVISION_DIV1;                  /* 时钟不分频 */
+  TIM3Handle.Init.CounterMode       = TIM_COUNTERMODE_UP;                      /* 向上计数 */
+  TIM3Handle.Init.RepetitionCounter = 1 - 1;                                   /* 不重复计数 */
+  TIM3Handle.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;          /* 自动重装载寄存器没有缓冲 */
+  /* 基础时钟初始化 */
+  if (HAL_TIM_PWM_Init(&TIM3Handle) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  
+  TIM3Config.OCMode       = TIM_OCMODE_PWM1;                                     /* 输出配置为PWM1 */
+  TIM3Config.OCPolarity   = TIM_OCPOLARITY_HIGH;                                 /* OC通道输出高电平有效 */
+  TIM3Config.OCFastMode   = TIM_OCFAST_DISABLE;                                  /* 输出快速使能关闭 */
+  TIM3Config.OCNPolarity  = TIM_OCNPOLARITY_HIGH;                                /* OCN通道输出高电平有效 */
+  TIM3Config.OCNIdleState = TIM_OCNIDLESTATE_RESET;                              /* 空闲状态OC1N输出低电平 */
+  TIM3Config.OCIdleState  = TIM_OCIDLESTATE_RESET;                               /* 空闲状态OC1输出低电平 */
+
+  TIM3Config.Pulse = 1;                                               /* CC1值 */
+  /* 配置通道1,用于Boost */
+  if (HAL_TIM_PWM_ConfigChannel(&TIM3Handle, &TIM3Config, TIM_CHANNEL_1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+}
+
+void PWMB(PWMsTypeDef MODE)
+{
+  if(MODE == RUN)
+  {
+    if (HAL_TIM_PWM_Start(&TIM3Handle, TIM_CHANNEL_1) != HAL_OK) 
+    { 
+      Error_Handler(); 
+    }
+  }
+  else
+  {
+    if (HAL_TIM_PWM_Stop(&TIM3Handle, TIM_CHANNEL_1) != HAL_OK) 
+    { 
+      Error_Handler(); 
+    }
+  }
+}
 
 

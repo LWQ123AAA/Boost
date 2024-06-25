@@ -1,9 +1,10 @@
 #include "key.h"
 #include "gpio.h"
+#include "initial.h"
 
 //GPIO底层初始化 ok
 //头文件整理 ok
-//调用，测试
+//调用，测试 ok
 
 key_typedef  key_power;
 
@@ -37,11 +38,17 @@ void Key_Reload_Long(key_typedef * pk)
   }
 }
 
+uint8_t step;
 
 void Key_Flag_Out_Scan(void)
 {
   if(key_power.key_short_flag == 1){
     key_power.key_short_flag = 0;
+    step += 10;
+    if( step == 60 ){
+      step = 0;
+    }
+    Config_Pwmb_Duty(step);
   }
 }
 

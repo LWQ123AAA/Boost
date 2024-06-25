@@ -28,3 +28,4 @@
 .\objects\key.o: ..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_hal_tim.h
 .\objects\key.o: ..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_hal_tim_ex.h
 .\objects\key.o: ..\Inc\gpio.h
+.\objects\key.o: ..\Inc\initial.h

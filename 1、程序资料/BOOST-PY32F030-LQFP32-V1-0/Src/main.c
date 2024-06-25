@@ -12,6 +12,7 @@ int main(void)
 {
   /* 初始化所有外设，Flash接口，SysTick */
 
+
   HAL_Init();
 #if defined(RSTPIN_MODE_GPIO)
   if( READ_BIT(FLASH->OPTR, FLASH_OPTR_NRST_MODE) == OB_RESET_MODE_RESET)
@@ -29,6 +30,8 @@ int main(void)
   Systick_Initial();
   
   Key_Initial();
+  
+  Pwm_Boost_Initial();
   
   while (1)
   {

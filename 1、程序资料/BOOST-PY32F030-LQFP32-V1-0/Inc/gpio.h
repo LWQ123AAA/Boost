@@ -9,7 +9,7 @@ typedef enum
   MODE_INPUT_UP,   //上拉输入
   MODE_INPUT_DOWN,  //下拉输入
   MODE_INPUT_NOUPDOWN,  //高阻抗输入
-  MODE_OUTPUT_T1CH2,  //蓝灯PWM输出
+  MODE_OUTPUT_T3CH1,  //PWM输出
   MODE_EXTI,
 } Mode_TypeDef;
 
